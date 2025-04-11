@@ -1,0 +1,20 @@
+VM allocates resources from hardware to operating system. So VM virtualize hardware - Hypervisor (for example Virtual Box).
+Docker works differently. Docker's process (daemon) runs on 1 operating system. Using Docker we virtualize portion of the operating system to create container. 
+Container is kinda like micro computers. They have their own OS, CPU etc. (meaning share from my main program but from the container point of view they are their own thing).
+
+New terms: Image, Docker file,  Container
+Dockerfile has inside instructions and based on the dockerfile we create image with the tag (deafult :latest).
+	{docker build}
+Image is instructions (where we run container from). Docker will put images from docker hub.
+	{docker run}
+Container runs the code the command flag.
+
+Progress today:
+Learned more about docker from the book.
+Install the docker  + run simpliest docker run hello-world.
+Run a simple images hello-world and also create a docker (simple container that had script running with random phrases and used specific font)
+
+
+Plans
+Finish the book
+I need to visit  https://docs.docker.com/get-started/ later.
