@@ -1,3 +1,4 @@
+April 11
 VM allocates resources from hardware to operating system. So VM virtualize hardware - Hypervisor (for example Virtual Box).
 Docker works differently. Docker's process (daemon) runs on 1 operating system. Using Docker we virtualize portion of the operating system to create container. 
 Container is kinda like micro computers. They have their own OS, CPU etc. (meaning share from my main program but from the container point of view they are their own thing).
@@ -9,12 +10,50 @@ Image is instructions (where we run container from). Docker will put images from
 	{docker run}
 Container runs the code the command flag.
 
-Progress today:
+Progress:
 Learned more about docker from the book.
 Install the docker  + run simpliest docker run hello-world.
 Run a simple images hello-world and also create a docker (simple container that had script running with random phrases and used specific font)
 
 
-Plans
-Finish the book
+Plans:
+Finish the book.
 I need to visit  https://docs.docker.com/get-started/ later.
+
+
+
+
+
+April 12
+
+Following the video on youtube from typecraft and networkChuck.
+
+
+New terms:
+Docker compose is tool that helps to define and run multi-container Docker applications. Describing everything is one YAML file (.yml)
+Volume is the solution to have data that will remain after image is not run.
+Healthcheck to make sure that all services are running. Doesnt make to run middle part if the issue appered in the first part. 
+Depends_on is making sure that everything runs. Condition statement on healthcheck.
+dns - Domain Name System. Table with services to enable communiction between them ?*not sure
+
+Progress:
+Getting to know the power of docker. It's really great.
+
+
+Plans:
+Finish video from NetworkChuck
+Finish book
+
+
+
+Docker commands
+docker build -t (tag, by default latest) <image.name> . (directory) - builds an image
+docker images - shows all images that are currently avaliable 
+docker compose ps - displays running containers and information about them
+docker run <image.name>:tag - runs the container
+docker rmi <image.name>:tag  OR specific id that is shown via docker images - deletes image 
+docker compose logs service.name  - to see logs
+docker compose exec service.name - execute command on the service
+docker compose up / down - runs and brings down the container
+docker ps - shows all containes that are running
+docker stop container.id - stops that container 
