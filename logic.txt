@@ -57,3 +57,9 @@ docker compose exec service.name - execute command on the service
 docker compose up / down - runs and brings down the container
 docker ps - shows all containes that are running
 docker stop container.id - stops that container 
+
+
+
+
+Apr 19.
+Unrelated to docker itself, but i started working on Inception project and created VM where i will deploy docker + was able to make ssh connection
