@@ -1,0 +1,4 @@
+https://www.freecodecamp.org/news/docker-vs-vm-key-differences-you-should-know/
+https://medium.com/edureka/docker-networking-1a7d65e89013
+https://faun.pub/docker-networks-part-1-of-2-15a986a48d0a
+https://faun.pub/docker-networks-part-2-of-2-8eaca9308456
