@@ -1,48 +1,28 @@
-April 11
-VM allocates resources from hardware to operating system. So VM virtualize hardware - Hypervisor (for example Virtual Box).
-Docker works differently. Docker's process (daemon) runs on 1 operating system. Using Docker we virtualize portion of the operating system to create container. 
-Container is kinda like micro computers. They have their own OS, CPU etc. (meaning share from my main program but from the container point of view they are their own thing).
+For the project:
+I need 3 dockers 
+	1) NGINX with TLSv1.2 or TLSv1.3
+	2) WordPress with php
+	3)MariaDB
 
-New terms: Image, Docker file,  Container
-Dockerfile has inside instructions and based on the dockerfile we create image with the tag (deafult :latest).
-	{docker build}
-Image is instructions (where we run container from). Docker will put images from docker hub.
-	{docker run}
-Container runs the code the command flag.
+2 Volumes
+	1)Database
+	2)Website files
 
-Progress:
-Learned more about docker from the book.
-Install the docker  + run simpliest docker run hello-world.
-Run a simple images hello-world and also create a docker (simple container that had script running with random phrases and used specific font)
+Docker Network in yml file
+
+Rules - docker should auto restart
+	No tail_f, bash, sleep infinity, while true.
 
 
-Plans:
+
+
+To-do:
 Finish the book.
-I need to visit  https://docs.docker.com/get-started/ later.
+check best practises for writing Dockerfiles - PID 1
+Check 		https://docs.docker.com/get-started/
+		https://docker-curriculum.com/		
+		https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-2/definitions-and-basic-concepts
 
-
-
-
-
-April 12
-
-Following the video on youtube from typecraft and networkChuck.
-
-
-New terms:
-Docker compose is tool that helps to define and run multi-container Docker applications. Describing everything is one YAML file (.yml)
-Volume is the solution to have data that will remain after image is not run.
-Healthcheck to make sure that all services are running. Doesnt make to run middle part if the issue appered in the first part. 
-Depends_on is making sure that everything runs. Condition statement on healthcheck.
-dns - Domain Name System. Table with services to enable communiction between them ?*not sure
-
-Progress:
-Getting to know the power of docker. It's really great.
-
-
-Plans:
-Finish video from NetworkChuck
-Finish book
 
 
 
@@ -59,7 +39,3 @@ docker ps - shows all containes that are running
 docker stop container.id - stops that container 
 
 
-
-
-Apr 19.
-Unrelated to docker itself, but i started working on Inception project and created VM where i will deploy docker + was able to make ssh connection
