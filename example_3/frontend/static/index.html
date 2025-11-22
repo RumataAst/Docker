@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Todo</title>
+  <style>
+    body { font-family: sans-serif; max-width: 400px; margin: 2rem auto; }
+    input { width: 70%; padding: 0.5rem; }
+    button { padding: 0.5rem; margin-left: 0.5rem; }
+    ul { list-style: none; padding: 0; margin-top: 1rem; }
+    li { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    li button { background: red; color: white; border: none; padding: 0 0.5rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Todo</h1>
+  <input type="text" id="newItem" placeholder="Add new item">
+  <button id="addBtn">Add</button>
+  <ul id="todoList"></ul>
+
+  <script>
+    const input = document.getElementById('newItem');
+    const list = document.getElementById('todoList');
+    const addBtn = document.getElementById('addBtn');
+
+    addBtn.addEventListener('click', addItem);
+    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') addItem(); });
+
+    function addItem() {
+      if (!input.value.trim()) return;
+
+      const li = document.createElement('li');
+      li.textContent = input.value;
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = '×';
+      deleteBtn.addEventListener('click', () => list.removeChild(li));
+
+      li.appendChild(deleteBtn);
+      list.appendChild(li);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
