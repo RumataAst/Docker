@@ -1,46 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minimal Todo</title>
-  <style>
-    body { font-family: sans-serif; max-width: 400px; margin: 2rem auto; }
-    input { width: 70%; padding: 0.5rem; }
-    button { padding: 0.5rem; margin-left: 0.5rem; }
-    ul { list-style: none; padding: 0; margin-top: 1rem; }
-    li { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-    li button { background: red; color: white; border: none; padding: 0 0.5rem; cursor: pointer; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Todo List</title>
 </head>
 <body>
-  <h1>Todo</h1>
-  <input type="text" id="newItem" placeholder="Add new item">
-  <button id="addBtn">Add</button>
-  <ul id="todoList"></ul>
+    <h1>Todo List</h1>
+    <input type="text" id="newItem" placeholder="Enter a new item">
+    <button onclick="addItem()">Add</button>
+    <ul id="todoList"></ul>
 
-  <script>
-    const input = document.getElementById('newItem');
-    const list = document.getElementById('todoList');
-    const addBtn = document.getElementById('addBtn');
+    <script>
+        const API_URL = 'http://localhost:8000';
 
-    addBtn.addEventListener('click', addItem);
-    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') addItem(); });
+        async function fetchTodos() {
+            const response = await fetch(`${API_URL}/todos`);
+            const todos = await response.json();
+            const list = document.getElementById('todoList');
+            list.innerHTML = '';
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.textContent = todo.content;
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = () => deleteItem(todo.id);
+                li.appendChild(deleteBtn);
+                list.appendChild(li);
+            });
+        }
 
-    function addItem() {
-      if (!input.value.trim()) return;
+        async function addItem() {
+            const input = document.getElementById('newItem');
+            if (input.value.trim() !== '') {
+                const response = await fetch(`${API_URL}/todos`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: input.value }),
+                });
+                if (response.ok) {
+                    input.value = '';
+                    fetchTodos();
+                }
+            }
+        }
 
-      const li = document.createElement('li');
-      li.textContent = input.value;
+        async function deleteItem(id) {
+            const response = await fetch(`${API_URL}/todos/${id}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                fetchTodos();
+            }
+        }
 
-      const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = '×';
-      deleteBtn.addEventListener('click', () => list.removeChild(li));
-
-      li.appendChild(deleteBtn);
-      list.appendChild(li);
-      input.value = '';
-    }
-  </script>
+        fetchTodos();
+    </script>
 </body>
 </html>
