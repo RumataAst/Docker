@@ -18,3 +18,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
+    mongodb:
+      image: mongo:7.0.12
+      container_name: mysite-mongodb
+      volumes:
+        - mongodb-data:/data/db
+      env_file:
+       - ./mongodb/.env
+      
+
+volumes:
+  mongodb-data:
