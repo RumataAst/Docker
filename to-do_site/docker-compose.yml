@@ -10,7 +10,9 @@ services:
     ports:
       - 8000:8000
     env_file:
-     - ./backend/.env
+      - ./backend/.env
+    depends_on:
+      - mangodb
   frontend:
     image: mysite-frontend
     pull_policy: never
@@ -27,7 +29,14 @@ services:
       - mongodb-data:/data/db
     env_file:
       - ./mongodb/.env
-      
+
+  mongo-express:
+    image: mongo-express:1.0.2
+    ports:
+      - 8081:8081
+    container_name: mysite-mongo-express
+    env_file:
+      - ./mongo-express/.env
 
 volumes:
   mongodb-data:
